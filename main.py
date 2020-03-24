@@ -1,5 +1,6 @@
-from flask import Flask,redirect, url_for, request, render_template
+from flask import Flask,redirect, url_for, request, render_template,send_file
 from downloader import *
+from converter import *
 app=Flask(__name__)
 @app.route('/')
 def main():
@@ -11,12 +12,17 @@ def download():
 		quality=request.form['service']
 		print(name)
 		if quality=='mp3':
-			link=downloadlinks(name_converter(name),mp3=True)
-			return redirect(link)
+			m(name)
+			return render_template("download.html")
 		else:
 			#r={'720p':'1280x720','480p':'720x480','144p':'256x144'}
 			#r=r[quality]
 			link=downloadlinks(name_converter(name))
 			return redirect(link)
-
+@app.route('/return-files/')
+def return_files_tut():
+	try:
+		return send_file(mp3f(), attachment_filename=mp3f(),as_attachment=True)
+	except Exception as e:
+		return str(e)
 app.run()

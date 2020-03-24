@@ -1,0 +1,51 @@
+#body-container{
+	background: linear-gradient(60deg,#F54B64,#F78361);
+
+	padding-top:  1%;
+	border-radius: 10px;
+	padding-left: 3%;
+	padding-right:  3%;
+}
+#main{
+	margin: 10%;
+}
+label{
+	display: flex;
+	justify-content: center;
+
+}
+#button{
+	display: flex;
+	align-self: center;
+	justify-content: center;
+	
+}
+button{
+	background: #CF6679;
+}
+body{
+	background-color: #121212;
+}
+input{
+	border-radius: 25px 25px;
+	background: pink;
+}
+#ranking{
+	background: linear-gradient(60deg,#F54B64,#F78361);
+
+	padding-top:  1%;
+	border-radius: 10px;
+	padding-left: 3%;
+	padding-right:  3%;
+
+}
+#sep{
+	padding:1%;
+}
+.list-group-item{
+	color: white;
+	background-color: black;
+}
+ul{
+	color: white;
+}
