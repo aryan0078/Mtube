@@ -21,6 +21,10 @@ def m(x):
     c_s=d(x)
     converter()
     return c_s
+def namel(x):
+    video=p.new(name_converter(x))
+    best=video.getbestaudio()
+    return video.title+'.mp3'
 def stream(x):
     video=p.new(name_converter(x))
     best=video.getbestaudio()

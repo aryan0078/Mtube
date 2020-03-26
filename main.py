@@ -12,22 +12,34 @@ def download():
 	if request.method=='POST':
 		name=request.form['name']
 		quality=request.form['service']
-		print(name)
+		#print(name)
+		
 		if quality=='mp3':
 			global c_s
-			c_s=m(name)
-			
-			return render_template("download.html",sr=stream(name))
+			os.chdir(os.getcwd()+'/songs')
+			for i in os.listdir():
+				print(i)
+				if i==namel(name):
+					return render_template("download.html",sr=stream(name),fn=namel(name))
+			#c_s=m(name)
+			return '<h1>test</h1>'
+			#return render_template("download.html",sr=stream(name),fn=namel(name))
 		else:
-			#r={'720p':'1280x720','480p':'720x480','144p':'256x144'}
-			#r=r[quality]
 			link=downloadlinks(name_converter(name))
 			return redirect(link)
-@app.route('/return-files/')
-def return_files_tut():
+@app.route('/multi')
+def multi():
+	if request.method=='POST':
+		name=request.form['name']
+		#print(name)
+		return render_template("download.html",sr=stream(name))
+
+@app.route('/return-files/<name>')
+def return_files_tut(name):
 	try:
-		f=os.getcwd()+'/'+c_s
-		return send_file(f+'.mp3', attachment_filename=f+'.mp3',as_attachment=True)
+		f=os.getcwd()+'/'+name
+		return send_file(f, attachment_filename=f,as_attachment=True)
 	except Exception as e:
 		return str(e)
-app.run(port=8000)
+
+app.run()
