@@ -15,15 +15,9 @@ def download():
 		#print(name)
 		
 		if quality=='mp3':
-			global c_s
-			os.chdir(os.getcwd()+'/songs')
-			for i in os.listdir():
-				print(i)
-				if i==namel(name):
-					return render_template("download.html",sr=stream(name),fn=namel(name))
-			#c_s=m(name)
-			return '<h1>test</h1>'
-			#return render_template("download.html",sr=stream(name),fn=namel(name))
+			mtube=Mtube(name)
+			filename=mtube.m()
+			return render_template("download.html",sr=mtube.stream(),fn=filename)
 		else:
 			link=downloadlinks(name_converter(name))
 			return redirect(link)
