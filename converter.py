@@ -4,13 +4,19 @@ import pafy as p
 import os
 class Mtube:
     def __init__(self,name):
-       
-        os.chdir('./songs')
-        if len(os.listdir())>10:
-            self.cleaner()
-        self.name=name
-        self.songurl=self.name_converter(name)
-        self.filename=self.namel()
+        try:
+            os.chdir('./songs')
+            if len(os.listdir())>10:
+                self.cleaner()
+            self.name=name
+            self.songurl=self.name_converter(name)
+            self.filename=self.namel()
+        except:
+            if len(os.listdir())>10:
+                self.cleaner()
+            self.name=name
+            self.songurl=self.name_converter(name)
+            self.filename=self.namel()
         #print(self.filename)
     def name_converter(self,x):
         p=requests.get('https://www.youtube.com/results?search_query={}'.format('+'.join(x.split())))
